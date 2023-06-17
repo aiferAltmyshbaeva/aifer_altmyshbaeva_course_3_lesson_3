@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">C3Lesson3Hw3</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">NEXT</string>
+    <string name="pizza_name">Pizza Name</string>
+    <string name="dressing_type">Dressing Type</string>
+    <string name="finish">FINISH</string>
+    <string name="to_topping">To Topping</string>
+</resources>
