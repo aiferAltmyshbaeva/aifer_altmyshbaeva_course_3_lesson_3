@@ -1,4 +1,4 @@
-package com.example.c3lesson3hw3;
+package com.example.c3lesson3hw3.fragment.pizza;
 
 import android.os.Bundle;
 
@@ -12,16 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.c3lesson3hw3.R;
+import com.example.c3lesson3hw3.fragment.GenericAdapter;
+import com.example.c3lesson3hw3.fragment.dressing.DressingFragment;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class PizzaFragment extends Fragment {
 
+    private static final int ITEM_PIZZA = R.layout.item_pizza;
+    private static final int TV_PIZZA = R.id.tv_pizza;
+    private static final int RV_PIZZA = R.id.rv_pizza;
+    private static final int BTN_NEXT = R.id.btn_next;
     private RecyclerView rvPizza;
     private Button btnNext;
-    private PizzaAdapter pizzaAdapter;
-    private ArrayList<String> pizzaList = new ArrayList<>();
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,31 +39,28 @@ public class PizzaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
-        loadData();
-        pizzaAdapter = new PizzaAdapter(pizzaList);
+        GenericAdapter pizzaAdapter = new GenericAdapter(loadData(), ITEM_PIZZA, TV_PIZZA);
         rvPizza.setAdapter(pizzaAdapter);
         initListener();
     }
 
     private void initView() {
-        rvPizza = requireActivity().findViewById(R.id.rv_pizza);
-        btnNext = requireActivity().findViewById(R.id.btn_next);
+        rvPizza = requireActivity().findViewById(RV_PIZZA);
+        btnNext = requireActivity().findViewById(BTN_NEXT);
     }
 
     private void initListener() {
-        btnNext.setOnClickListener(v -> {
-            DressingFragment dressingFragment = new DressingFragment();
-            requireActivity()
+        btnNext.setOnClickListener(v -> requireActivity()
                     .getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.container_pizza, dressingFragment)
+                    .replace(R.id.container_pizza, new DressingFragment())
                     .addToBackStack(null)
-                    .commit();
-
-        });
+                    .commit()
+        );
     }
 
-    private void loadData() {
+    private List<String> loadData() {
+        List<String> pizzaList = new ArrayList<>();
         pizzaList.add("4 сыра");
         pizzaList.add("Барбекю");
         pizzaList.add("Вегетарианская");
@@ -84,5 +86,6 @@ public class PizzaFragment extends Fragment {
         pizzaList.add("Цезарь");
         pizzaList.add("Чили");
         pizzaList.add("Шашлычная с говядиной");
+        return pizzaList;
     }
 }

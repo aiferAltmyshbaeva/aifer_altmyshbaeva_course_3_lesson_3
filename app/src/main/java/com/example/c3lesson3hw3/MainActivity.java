@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
+import com.example.c3lesson3hw3.fragment.pizza.PizzaFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.c3lesson3hw3;
+package com.example.c3lesson3hw3.fragment.topping;
 
 import android.os.Bundle;
 
@@ -12,14 +12,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.c3lesson3hw3.R;
+import com.example.c3lesson3hw3.fragment.GenericAdapter;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ToppingFragment extends Fragment {
 
+    private static final int RV_TOPPING = R.id.rv_topping;
+    private static final int ITEM_TOPPING = R.layout.item_topping;
+    private static final int TV_TOPPING = R.id.tv_topping;
+    private static final int BTN_FINISH = R.id.btn_finish;
     private RecyclerView rvTopping;
     private Button btnFinish;
-    private ToppingAdapter toppingAdapter;
-    private ArrayList<String> toppingList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,23 +39,21 @@ public class ToppingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView();
         initListener();
-        loadData();
-        toppingAdapter = new ToppingAdapter(toppingList);
+        GenericAdapter toppingAdapter = new GenericAdapter(loadData(), ITEM_TOPPING, TV_TOPPING);
         rvTopping.setAdapter(toppingAdapter);
     }
 
     private void initView() {
-        rvTopping = requireActivity().findViewById(R.id.rv_topping);
-        btnFinish = requireActivity().findViewById(R.id.btn_finish);
+        rvTopping = requireActivity().findViewById(RV_TOPPING);
+        btnFinish = requireActivity().findViewById(BTN_FINISH);
     }
 
     private void initListener() {
-        btnFinish.setOnClickListener(v -> {
-            getActivity().finishAffinity();
-        });
+        btnFinish.setOnClickListener(v -> getActivity().finishAffinity());
     }
 
-    private void loadData() {
+    private List<String> loadData() {
+        List<String> toppingList = new ArrayList<>();
         toppingList.add("Сыр");
         toppingList.add("Грибы");
         toppingList.add("Помидоры");
@@ -62,6 +66,7 @@ public class ToppingFragment extends Fragment {
         toppingList.add("Ананас");
         toppingList.add("Зелень");
         toppingList.add("Куриная грудка");
+        return toppingList;
     }
 
 }
