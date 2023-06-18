@@ -13,6 +13,7 @@ public class GenericViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         textView = itemView.findViewById(id);
     }
+
     public void bind(String value) {
         textView.setText(value);
     }
