@@ -1,10 +1,12 @@
 package com.example.c3lesson3hw3;
 
+import android.os.Bundle;
+
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
+import com.example.c3lesson3hw3.fragment.pizza.PizzaFragment;
 
 public class MainActivity extends AppCompatActivity {
 
